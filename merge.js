@@ -8,6 +8,8 @@ var outputfolder = './mergelotties/';
 var outputjson = outputfolder + '/lotties.json';
 var outputimages = outputfolder + '/images/';
 
+var onlineurl = 'https:\/\/asset.bondevisite.fr\/animation\/mergelotties\/images\/';
+
 mergeLottieJson(dirname, outputjson);
 
 function mergeLottieJson (dirname, output, callback) {
@@ -45,7 +47,7 @@ function createOutput (bigjson, output) {
     //// REPLACE IMAGE LINKS
     fs.readFile(output, 'utf8', function (err, data) {
       if (err) return console.log(err);
-      var result = data.replace(/images\//g, 'https:\/\/asset.bondevisite.fr\/animation\/mergelotties\/images\/');
+      var result = data.replace(/images\//g, onlineurl);
 
       fs.writeFile(output, result, 'utf8', function (err) {
          if (err) return console.log(err);
