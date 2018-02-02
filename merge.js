@@ -1,9 +1,13 @@
 var jsonfile = require('jsonfile')
 var fs = require('fs');
+var copy = require('copy');
 
 var dirname = './animations/';
-var output = './bigjson.json';
-mergeLottieJson(dirname, output);
+var outputfolder = './mergelotties/';
+var outputjson = outputfolder + '/lotties.json';
+var outputimages = outputfolder + '/images/';
+
+mergeLottieJson(dirname, outputjson);
 
 function mergeLottieJson (dirname, output, callback) {
   var bigjson = {};
@@ -13,15 +17,24 @@ function mergeLottieJson (dirname, output, callback) {
     var listlength = list.length;
     var count = 0;
     list.forEach(function(folder) {
-      folderpath = dirname + '\\' + folder;
-      json = folderpath+'\\data.json';
+      var folderpath = dirname + '/' + folder;
+      var json = folderpath + '/data.json';
+      var images = folderpath+'/images/';
       jsonfile.readFile(json, function(err, obj) {
         if (err) return console.error(err);
         bigjson[folder] = obj;
+        copyImagesAnim(images);
         count++;
         if (count == listlength) createOutput(bigjson, output);
       });
     });
+  });
+}
+
+function copyImagesAnim (path) {
+  console.log(path+'*.png');
+  copy(path+'*.png', outputimages, function(err, files) {
+    if (err) return console.error(err);
   });
 }
 
