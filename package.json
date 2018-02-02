@@ -1,0 +1,9 @@
+{
+  "name": "bdv-lottie-merge",
+  "version": "0.0.1",
+  "description": "merge lottie json animation in one big json",
+  "private": false,
+  "dependencies": {
+    "jsonfile": "^3.0.1",
+  }
+}
