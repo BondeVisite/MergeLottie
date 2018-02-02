@@ -4,6 +4,6 @@
   "description": "merge lottie json animation in one big json",
   "private": false,
   "dependencies": {
-    "jsonfile": "^3.0.1",
+    "jsonfile": "^3.0.1"
   }
 }
